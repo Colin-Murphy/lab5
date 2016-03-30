@@ -167,7 +167,7 @@ ra_done:
 	# traverse the tree
 	#
 
-	la	$a0, ptr_tree1	# change to ptr_tree1 for testing
+	la	$a0, ptr_root	# change to ptr_tree1 for testing
 	jal	perform_traversals
 
 #
