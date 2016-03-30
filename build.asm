@@ -40,6 +40,18 @@ add_elements:
 # two parameters:  the address of the variable which contains the
 # root pointer for the tree, and the number to be inserted.
 #
+
+	move 	$s0, $zero		# loop counter
+add_loop:
+	beq	$s0, $a1, add_done	# loop over all items
+	li 	$t0, 4			# word size
+	mul 	$t0, $t0, $s0		# array offset
+	add 	$t0, $t0, $a0		# address in array
+	lw 	$a3, 0($t0)		# store the number in a3
+	jal 	build_tree		# Add the number
+	addi 	$s0, 1			# Incriment counter 
+
+	
 #***** END STUDENT CODE BLOCK 1 *****************************
 
 add_done:
@@ -55,4 +67,26 @@ add_done:
 #
 # Put your build_tree subroutine here.
 #
+# 
+# Name:		build_tree
+#
+# Description:	adds a number to a tree
+#
+# Arguments:	
+#		a2 the address of the root pointer
+#		a3 the number to add
+# Returns:	none
+#
+build_tree:
+	
+	li	$v0, 1
+	move	$a0, $t1
+	move	$a0, $a3
+	move	$t1, $a0
+	syscall
+	jr $ra
+
+
+
+
 #***** END STUDENT CODE BLOCK 2 *****************************
